@@ -2,7 +2,8 @@ import babel from 'rollup-plugin-babel'
 
 export default {
   entry: 'src/main.js',
-  format: 'cjs',
+  format: 'umd',
+  moduleName: 'TiltEffect',
   plugins: [ babel() ],
-  dest: 'tilt-effect.js'
+  dest: 'dist/tilt-effect.js'
 }

@@ -1,4 +1,8 @@
-'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global.TiltEffect = factory());
+}(this, (function () { 'use strict';
 
 function hitTest(bounds, mouseX, mouseY) {
   var top = bounds.top;
@@ -117,4 +121,6 @@ function TiltEffect(_ref) {
   });
 }
 
-module.exports = TiltEffect;
+return TiltEffect;
+
+})));
