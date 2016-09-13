@@ -66,6 +66,21 @@ export default function TiltEffect({
       window.removeEventListener('pointerup', onPointerUp)
       window.removeEventListener('dragend', onPointerUp)
       hit.removeEventListener('pointerdown', onPointerDown)
-    }
+    },
+
+    get tilt(){ return tilt },
+    set tilt(value){ tilt = value },
+
+    get hit(){ return tilt },
+    set hit(value){ hit = value },
+
+    get draggable(){ return draggable },
+    set draggable(value){ drag = value },
+
+    get amount(){ return amount },
+    set amount(value){ amount = value },
+
+    get sink(){ return sink },
+    set sink(value){ sink = value }
   }
 }
