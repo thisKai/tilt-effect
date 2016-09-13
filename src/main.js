@@ -44,7 +44,7 @@ export default function TiltEffect({
     window.removeEventListener('pointerup', onPointerUp)
     window.removeEventListener('dragend', onPointerUp)
   }
-  hit.addEventListener('pointerdown', e => {
+  const onPointerDown = e => {
     state.isTilting = true
     state.isPointerDown = true
 
@@ -56,5 +56,16 @@ export default function TiltEffect({
     window.addEventListener('pointermove', onPointerMove)
     window.addEventListener('pointerup', onPointerUp)
     window.addEventListener('dragend', onPointerUp)
-  })
+  }
+
+  hit.addEventListener('pointerdown', onPointerDown)
+
+  return {
+    destroy(){
+      window.removeEventListener('pointermove', onPointerMove)
+      window.removeEventListener('pointerup', onPointerUp)
+      window.removeEventListener('dragend', onPointerUp)
+      hit.removeEventListener('pointerdown', onPointerDown)
+    }
+  }
 }
