@@ -4,7 +4,7 @@ var babel = require('rollup-plugin-babel')
 
 var development = process.env.NODE_ENV === 'development'
 
-console.log('Trying to build tilt-effect for '+ development ? 'development' : 'production');
+console.log('Trying to build tilt-effect for '+ (development ? 'development' : 'production'));
 
 var rollupOptions = {
   entry: 'src/main.js',
