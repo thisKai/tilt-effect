@@ -38,11 +38,10 @@ export function tiltRotation(bounds, mouseX, mouseY, tiltAmount) {
 export function tiltTransform(bounds, mouseX, mouseY, tiltAmount) {
   const {x, y} = tiltRotation(bounds, mouseX, mouseY, tiltAmount)
   const {width, height} = bounds
-  const maxSize = width > height ? width : height
-  const minSize = width < height ? width : height
-  const perspective = minSize*6
+
+  const perspective = 400;
   const translateZ = -20
-  // const extraTransform = 'translateY(1px)'
+
   const extraTransform = ''
 
   return `perspective(${perspective}px) translateZ(${translateZ}px) rotateY(${x}turn) rotateX(${y}turn) ${extraTransform}`
