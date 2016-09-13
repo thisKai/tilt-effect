@@ -19,10 +19,10 @@ export default function TiltEffect({
         tilt.style.transform = 'none'
       }
     },
-    isMouseDown: false,
+    isPointerDown: false,
     bounds: null
   }
-  const onMouseMove = e => {
+  const onPointerMove = e => {
     const {clientX, clientY} = e
 
     if(hitTest(state.bounds, clientX, clientY)){
@@ -35,24 +35,24 @@ export default function TiltEffect({
     }
   }
 
-  const onMouseUp = e => {
+  const onPointerUp = e => {
     state.isTilting = false
-    state.isMouseDown = false
-    window.removeEventListener('mousemove', onMouseMove)
-    window.removeEventListener('mouseup', onMouseUp)
-    window.removeEventListener('dragend', onMouseUp)
+    state.isPointerDown = false
+    window.removeEventListener('pointermove', onPointerMove)
+    window.removeEventListener('pointerup', onPointerUp)
+    window.removeEventListener('dragend', onPointerUp)
   }
-  hit.addEventListener('mousedown', e => {
+  hit.addEventListener('pointerdown', e => {
     state.isTilting = true
-    state.isMouseDown = true
+    state.isPointerDown = true
 
     const {clientX, clientY} = e
     setTimeout(()=>{
       tilt.style.transform = tiltTransform(state.bounds, clientX, clientY)
     }, 0)
 
-    window.addEventListener('mousemove', onMouseMove)
-    window.addEventListener('mouseup', onMouseUp)
-    window.addEventListener('dragend', onMouseUp)
+    window.addEventListener('pointermove', onPointerMove)
+    window.addEventListener('pointerup', onPointerUp)
+    window.addEventListener('dragend', onPointerUp)
   })
 }
