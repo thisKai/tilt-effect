@@ -3,7 +3,8 @@ import {hitTest, tiltRotation, tiltTransform} from './helper.js'
 export default function TiltEffect({
   tilt,
   hit=tilt,
-  draggable=false
+  draggable=false,
+  amount=1
 }){
   let _isTilting = false
 
@@ -31,7 +32,7 @@ export default function TiltEffect({
       state.isTilting = false;
     }
     if(state.isTilting){
-      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY)
+      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY, amount)
     }
   }
 
@@ -48,7 +49,7 @@ export default function TiltEffect({
 
     const {clientX, clientY} = e
     setTimeout(()=>{
-      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY)
+      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY, amount)
     }, 0)
 
     window.addEventListener('pointermove', onPointerMove)

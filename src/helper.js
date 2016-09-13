@@ -14,7 +14,7 @@ export function hitTest(bounds, mouseX, mouseY) {
   return x && y
 }
 
-export function tiltRotation(bounds, mouseX, mouseY) {
+export function tiltRotation(bounds, mouseX, mouseY, tiltAmount) {
   // find the distance from the center of the element to the pointer
   const {
     top,
@@ -29,14 +29,14 @@ export function tiltRotation(bounds, mouseX, mouseY) {
 
 
   // distance from pointer to center of element
-  const x = (centerX - mouseX) / -width / 16
-  const y = (centerY - mouseY) / height / 16
+  const x = (centerX - mouseX) / -width / (16 / tiltAmount)
+  const y = (centerY - mouseY) / height / (16 / tiltAmount)
 
   return {x, y}
 }
 
-export function tiltTransform(bounds, mouseX, mouseY) {
-  const {x, y} = tiltRotation(bounds, mouseX, mouseY)
+export function tiltTransform(bounds, mouseX, mouseY, tiltAmount) {
+  const {x, y} = tiltRotation(bounds, mouseX, mouseY, tiltAmount)
   const {width, height} = bounds
   const maxSize = width > height ? width : height
   const minSize = width < height ? width : height
