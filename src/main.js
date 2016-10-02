@@ -1,5 +1,8 @@
 import {hitTest, tiltRotation, tiltTransform} from './helper.js'
 
+export hitTest
+export tiltTransform
+
 export default function TiltEffect({
   tilt,
   hit=tilt,
