@@ -1,10 +1,14 @@
-export function hitTest(bounds, mouseX, mouseY) {
+export function hitTest(
+  bounds,
+  mouseX,
+  mouseY,
+) {
   const {
     top,
     left,
     bottom,
-    right
-  } = bounds;
+    right,
+  } = bounds
 
   // check if pointer is between the left and right edges
   const x = mouseX >= left && mouseX <= right
@@ -14,14 +18,19 @@ export function hitTest(bounds, mouseX, mouseY) {
   return x && y
 }
 
-export function tiltRotation(bounds, mouseX, mouseY, tiltAmount) {
+export function tiltRotation(
+  bounds,
+  mouseX,
+  mouseY,
+  tiltAmount,
+) {
   // find the distance from the center of the element to the pointer
   const {
     top,
     left,
     width,
-    height
-  } = bounds;
+    height,
+  } = bounds
 
   // center of element
   const centerX = left + (width / 2)
@@ -32,16 +41,27 @@ export function tiltRotation(bounds, mouseX, mouseY, tiltAmount) {
   const x = (centerX - mouseX) / -width / (16 / tiltAmount)
   const y = (centerY - mouseY) / height / (16 / tiltAmount)
 
-  return {x, y}
+  return { x, y }
 }
 
-export function tiltTransform(bounds, mouseX, mouseY, tiltAmount, sink) {
-  const {x, y} = tiltRotation(bounds, mouseX, mouseY, tiltAmount)
-  const {width, height} = bounds
+export function tiltTransform(
+  bounds,
+  mouseX,
+  mouseY,
+  tiltAmount,
+  sink,
+) {
+  const { x, y } = tiltRotation(
+    bounds,
+    mouseX,
+    mouseY,
+    tiltAmount,
+  )
+  const { width, height } = bounds
 
-  const perspective = 400;
-  const translateZ = -10*sink
-  
+  const perspective = 400
+  const translateZ = -10 * sink
+
   const extraTransform = ''
 
   return `perspective(${perspective}px) translateZ(${translateZ}px) rotateY(${x}turn) rotateX(${y}turn) ${extraTransform}`
