@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node ./build-module.js",
     "build-dev": "cross-env NODE_ENV=development node ./build-module.js",
+    "generate-docs": "esdoc -c esdoc.json",
     "postinstall": "node ./build-module.js"
   },
   "keywords": [
@@ -20,6 +21,7 @@
     "babel-plugin-external-helpers": "^6.8 .0",
     "babel-preset-es2015": "^6.14.0",
     "cross-env": "^3.1.4",
+    "esdoc": "^0.5.2",
     "pepjs": "^0.4.1",
     "rollup": "^0.34.13",
     "rollup-plugin-babel": "^2.6.1"
