@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node ./build-module.js",
-    "build-dev": "export NODE_ENV=development&& node ./build-module.js",
-    "build-dev:win": "set NODE_ENV=development&& node ./build-module.js",
+    "build-dev": "cross-env NODE_ENV=development node ./build-module.js",
     "postinstall": "node ./build-module.js"
   },
   "keywords": [
@@ -24,6 +23,7 @@
     "rollup-plugin-babel": "^2.6.1"
   },
   "devDependencies": {
+    "cross-env": "^3.1.4",
     "pepjs": "^0.4.1"
   }
 }
