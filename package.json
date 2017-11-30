@@ -9,7 +9,7 @@
     "build": "node ./build-module.js",
     "build-dev": "cross-env NODE_ENV=development node ./build-module.js",
     "generate-docs": "esdoc -c esdoc.json",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "tilt",
