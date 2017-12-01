@@ -3,7 +3,7 @@
   "version": "0.4.1",
   "description": "",
   "main": "./dist/tilt-effect-cjs.js",
-  "module": "./dist/tilt-effect-module.js",
+  "module": "./dist/tilt-effect-es.js",
   "browser": "./dist/tilt-effect-umd.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
