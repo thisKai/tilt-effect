@@ -5,7 +5,7 @@ export default function tiltTransform(
   mouseX,
   mouseY,
   tiltAmount,
-  sink,
+  sinkAmount,
 ) {
   const { x, y } = tiltRotation(
     bounds,
@@ -16,7 +16,7 @@ export default function tiltTransform(
   const { width, height } = bounds
 
   const perspective = 400
-  const translateZ = -10 * sink
+  const translateZ = -10 * sinkAmount
 
   const extraTransform = ''
 
