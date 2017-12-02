@@ -81,7 +81,7 @@ export default function TiltEffect({
     get tilt() { return tilt },
     set tilt(value) { tilt = value },
 
-    get hit() { return tilt },
+    get hit() { return hit },
     set hit(value) { hit = value },
 
     get draggable() { return draggable },
