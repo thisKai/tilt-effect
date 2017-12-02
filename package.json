@@ -8,7 +8,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
     "dev": "cross-env NODE_ENV=development rollup -c -w",
-    "generate-docs": "esdoc -c esdoc.json",
+    "docs": "esdoc -c esdoc.json",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -28,6 +28,7 @@
     "babel-preset-env": "^1.6.1",
     "cross-env": "^5.1.1",
     "esdoc": "^1.0.4",
+    "esdoc-standard-plugin": "^1.0.0",
     "pepjs": "^0.4.3",
     "rollup": "^0.52.0",
     "rollup-plugin-babel": "^3.0.2"
