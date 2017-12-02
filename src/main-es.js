@@ -1,6 +1,3 @@
-import tiltTransform from './transform'
-import hitTest from './hit'
-import TiltEffect from './effect'
-
-export { hitTest, tiltTransform }
-export default TiltEffect
+export { default } from './effect'
+export { default as hitTest } from './hit'
+export { default as tiltTransform } from './transform'
