@@ -32,7 +32,7 @@ export default function TiltEffect({
       }
     },
     isPointerDown: false,
-    bounds: null
+    bounds: null,
   }
   const onPointerMove = e => {
     const { clientX, clientY } = e
@@ -91,6 +91,6 @@ export default function TiltEffect({
     set amount(value) { amount = value },
 
     get sink() { return sink },
-    set sink(value) { sink = value }
+    set sink(value) { sink = value },
   }
 }
