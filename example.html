@@ -28,15 +28,15 @@
     </button>
     <script>
       TiltEffect({
-        amount: 1,
-        sink: 3,
-        tilt: document.getElementById('tilt-outside'),
+        tiltAmount: 1,
+        sinkAmount: 3,
+        tiltElement: document.getElementById('tilt-outside'),
       })
       TiltEffect({
-        amount: 1,
-        sink: 3,
-        tilt: document.getElementById('tilt-inside-contents'),
-        hit: document.getElementById('tilt-inside'),
+        tiltAmount: 1,
+        sinkAmount: 3,
+        tiltElement: document.getElementById('tilt-inside-contents'),
+        hitElement: document.getElementById('tilt-inside'),
       })
     </script>
   </body>
