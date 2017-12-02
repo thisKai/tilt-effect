@@ -10,6 +10,6 @@ This library uses W3C Pointer Events &mdash;
 var TiltEffect = require('tilt-effect')
 
 TiltEffect({
-  tilt: document.getElementById('tilt-this')
+  tiltElement: document.getElementById('tilt-this')
 })
 ```
