@@ -4,15 +4,15 @@ import hitTest from './hit'
 /**
  * tilt an element when it is pressed
  * @param {Object} options
- * @param {HTMLElement} options.tilt - the element to be tilted
- * @param {HTMLElement} options.hit - the element that listens to pointer events, this defaults to whichever element was passed to the "tilt" option
+ * @param {HTMLElement} options.tiltElement - the element that will be transformed
+ * @param {HTMLElement} options.hitElement - the element that listens to pointer events, by default it is the same as the tiltElement
  * @param {boolean} options.draggable
  * @param {number} options.tiltAmount
  * @param {number} options.sinkAmount
  */
 export default function TiltEffect({
-  tilt,
-  hit = tilt,
+  tiltElement,
+  hitElement = tiltElement,
   draggable = false,
   tiltAmount = 1,
   sinkAmount = 1,
@@ -23,12 +23,12 @@ export default function TiltEffect({
     get isTilting() { return _isTilting },
     set isTilting(val) {
       _isTilting = val
-      tilt.classList.toggle('tilted', val)
+      tiltElement.classList.toggle('tilted', val)
       if (val) {
-        hit.style.transform = 'none'
-        state.bounds = hit.getBoundingClientRect()
+        hitElement.style.transform = 'none'
+        state.bounds = hitElement.getBoundingClientRect()
       } else {
-        tilt.style.transform = 'none'
+        tiltElement.style.transform = 'none'
       }
     },
     isPointerDown: false,
@@ -43,7 +43,7 @@ export default function TiltEffect({
       state.isTilting = false
     }
     if (state.isTilting) {
-      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY, tiltAmount, sinkAmount)
+      tiltElement.style.transform = tiltTransform(state.bounds, clientX, clientY, tiltAmount, sinkAmount)
     }
   }
 
@@ -60,7 +60,7 @@ export default function TiltEffect({
 
     const { clientX, clientY } = e
     setTimeout(() => {
-      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY, tiltAmount, sinkAmount)
+      tiltElement.style.transform = tiltTransform(state.bounds, clientX, clientY, tiltAmount, sinkAmount)
     }, 0)
 
     window.addEventListener('pointermove', onPointerMove)
@@ -68,21 +68,21 @@ export default function TiltEffect({
     window.addEventListener('dragend', onPointerUp)
   }
 
-  hit.addEventListener('pointerdown', onPointerDown)
+  hitElement.addEventListener('pointerdown', onPointerDown)
 
   return {
     destroy() {
       window.removeEventListener('pointermove', onPointerMove)
       window.removeEventListener('pointerup', onPointerUp)
       window.removeEventListener('dragend', onPointerUp)
-      hit.removeEventListener('pointerdown', onPointerDown)
+      hitElement.removeEventListener('pointerdown', onPointerDown)
     },
 
-    get tilt() { return tilt },
-    set tilt(value) { tilt = value },
+    get tiltElement() { return tiltElement },
+    set tiltElement(value) { tiltElement = value },
 
-    get hit() { return hit },
-    set hit(value) { hit = value },
+    get hitElement() { return hitElement },
+    set hitElement(value) { hitElement = value },
 
     get draggable() { return draggable },
     set draggable(value) { drag = value },
