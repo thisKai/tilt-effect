@@ -7,15 +7,15 @@ import hitTest from './hit'
  * @param {HTMLElement} options.tilt - the element to be tilted
  * @param {HTMLElement} options.hit - the element that listens to pointer events, this defaults to whichever element was passed to the "tilt" option
  * @param {boolean} options.draggable
- * @param {number} options.amount
- * @param {number} options.sink
+ * @param {number} options.tiltAmount
+ * @param {number} options.sinkAmount
  */
 export default function TiltEffect({
   tilt,
   hit = tilt,
   draggable = false,
-  amount = 1,
-  sink = 1,
+  tiltAmount = 1,
+  sinkAmount = 1,
 }) {
   let _isTilting = false
 
@@ -43,7 +43,7 @@ export default function TiltEffect({
       state.isTilting = false
     }
     if (state.isTilting) {
-      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY, amount, sink)
+      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY, tiltAmount, sinkAmount)
     }
   }
 
@@ -60,7 +60,7 @@ export default function TiltEffect({
 
     const { clientX, clientY } = e
     setTimeout(() => {
-      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY, amount, sink)
+      tilt.style.transform = tiltTransform(state.bounds, clientX, clientY, tiltAmount, sinkAmount)
     }, 0)
 
     window.addEventListener('pointermove', onPointerMove)
@@ -87,10 +87,10 @@ export default function TiltEffect({
     get draggable() { return draggable },
     set draggable(value) { drag = value },
 
-    get amount() { return amount },
-    set amount(value) { amount = value },
+    get tiltAmount() { return tiltAmount },
+    set tiltAmount(value) { tiltAmount = value },
 
-    get sink() { return sink },
-    set sink(value) { sink = value },
+    get sinkAmount() { return sinkAmount },
+    set sinkAmount(value) { sinkAmount = value },
   }
 }
