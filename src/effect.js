@@ -12,6 +12,7 @@ import hitTest from './hit'
  * @param {number} options.sinkAmount
  *
  * @return {Object} a tilt effect instance
+ * @property {function()} destroy remove all event handlers created by this instance
  * @property {HTMLElement} tiltElement
  * @property {HTMLElement} hitElement
  * @property {boolean} draggable
