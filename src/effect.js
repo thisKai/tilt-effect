@@ -11,13 +11,7 @@ import hitTest from './hit'
  * @param {number} options.tiltAmount
  * @param {number} options.sinkAmount
  *
- * @return {Object} a tilt effect instance
- * @property {function()} destroy remove all event handlers created by this instance
- * @property {HTMLElement} tiltElement
- * @property {HTMLElement} hitElement
- * @property {boolean} draggable
- * @property {number} tiltAmount
- * @property {number} sinkAmount
+ * @return {TiltEffectInstance} a tilt effect instance
  */
 export default function TiltEffect({
   tiltElement,
@@ -103,3 +97,13 @@ export default function TiltEffect({
     set sinkAmount(value) { sinkAmount = value },
   }
 }
+
+/**
+ * @typedef {Object} TiltEffectInstance
+ * @property {function()} destroy remove all event handlers created by this instance
+ * @property {HTMLElement} tiltElement
+ * @property {HTMLElement} hitElement
+ * @property {boolean} draggable
+ * @property {number} tiltAmount
+ * @property {number} sinkAmount
+ */
