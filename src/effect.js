@@ -3,12 +3,20 @@ import hitTest from './hit'
 
 /**
  * tilt an element when it is pressed
+ *
  * @param {Object} options
  * @param {HTMLElement} options.tiltElement - the element that will be transformed
  * @param {HTMLElement} options.hitElement - the element that listens to pointer events, by default it is the same as the tiltElement
  * @param {boolean} options.draggable
  * @param {number} options.tiltAmount
  * @param {number} options.sinkAmount
+ *
+ * @return {Object} a tilt effect instance
+ * @property {HTMLElement} tiltElement
+ * @property {HTMLElement} hitElement
+ * @property {boolean} draggable
+ * @property {number} tiltAmount
+ * @property {number} sinkAmount
  */
 export default function TiltEffect({
   tiltElement,
