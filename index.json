@@ -1,0 +1,186 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "name": "src/effect.js",
+    "content": "import tiltTransform from './transform'\nimport hitTest from './hit'\n\n/**\n * tilt an element when it is pressed\n *\n * @param {Object} options\n * @param {HTMLElement} options.tiltElement - the element that will be transformed\n * @param {HTMLElement} options.hitElement - the element that listens to pointer events, by default it is the same as the tiltElement\n * @param {boolean} options.draggable\n * @param {number} options.tiltAmount\n * @param {number} options.sinkAmount\n *\n * @return {TiltEffectInstance} a tilt effect instance\n */\nexport default function TiltEffect({\n  tiltElement,\n  hitElement = tiltElement,\n  draggable = false,\n  tiltAmount = 1,\n  sinkAmount = 1,\n}) {\n  let _isTilting = false\n\n  const state = {\n    get isTilting() { return _isTilting },\n    set isTilting(val) {\n      _isTilting = val\n      tiltElement.classList.toggle('tilted', val)\n      if (val) {\n        hitElement.style.transform = 'none'\n        state.bounds = hitElement.getBoundingClientRect()\n      } else {\n        tiltElement.style.transform = 'none'\n      }\n    },\n    isPointerDown: false,\n    bounds: null,\n  }\n  const onPointerMove = e => {\n    const { clientX, clientY } = e\n\n    if (hitTest(state.bounds, clientX, clientY)) {\n      state.isTilting = true\n    } else {\n      state.isTilting = false\n    }\n    if (state.isTilting) {\n      tiltElement.style.transform = tiltTransform(state.bounds, clientX, clientY, tiltAmount, sinkAmount)\n    }\n  }\n\n  const onPointerUp = e => {\n    state.isTilting = false\n    state.isPointerDown = false\n    window.removeEventListener('pointermove', onPointerMove)\n    window.removeEventListener('pointerup', onPointerUp)\n    window.removeEventListener('dragend', onPointerUp)\n  }\n  const onPointerDown = e => {\n    state.isTilting = true\n    state.isPointerDown = true\n\n    const { clientX, clientY } = e\n    setTimeout(() => {\n      tiltElement.style.transform = tiltTransform(state.bounds, clientX, clientY, tiltAmount, sinkAmount)\n    }, 0)\n\n    window.addEventListener('pointermove', onPointerMove)\n    window.addEventListener('pointerup', onPointerUp)\n    window.addEventListener('dragend', onPointerUp)\n  }\n\n  hitElement.addEventListener('pointerdown', onPointerDown)\n\n  return {\n    destroy() {\n      window.removeEventListener('pointermove', onPointerMove)\n      window.removeEventListener('pointerup', onPointerUp)\n      window.removeEventListener('dragend', onPointerUp)\n      hitElement.removeEventListener('pointerdown', onPointerDown)\n    },\n\n    get tiltElement() { return tiltElement },\n    set tiltElement(value) { tiltElement = value },\n\n    get hitElement() { return hitElement },\n    set hitElement(value) { hitElement = value },\n\n    get draggable() { return draggable },\n    set draggable(value) { drag = value },\n\n    get tiltAmount() { return tiltAmount },\n    set tiltAmount(value) { tiltAmount = value },\n\n    get sinkAmount() { return sinkAmount },\n    set sinkAmount(value) { sinkAmount = value },\n  }\n}\n\n/**\n * @typedef {Object} TiltEffectInstance\n * @property {function()} destroy remove all event handlers created by this instance\n * @property {HTMLElement} tiltElement\n * @property {HTMLElement} hitElement\n * @property {boolean} draggable\n * @property {number} tiltAmount\n * @property {number} sinkAmount\n */\n",
+    "static": true,
+    "longname": "/home/kai/dev/javascript/tilt-effect/src/effect.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 1,
+    "kind": "function",
+    "name": "TiltEffect",
+    "memberof": "src/effect.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/effect.js~TiltEffect",
+    "access": "public",
+    "export": true,
+    "importPath": "tilt-effect",
+    "importStyle": "TiltEffect",
+    "description": "tilt an element when it is pressed",
+    "lineNumber": 16,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "HTMLElement"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.tiltElement",
+        "description": "the element that will be transformed"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "HTMLElement"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.hitElement",
+        "description": "the element that listens to pointer events, by default it is the same as the tiltElement"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.draggable",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.tiltAmount",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.sinkAmount",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "TiltEffectInstance"
+      ],
+      "spread": false,
+      "description": "a tilt effect instance"
+    }
+  },
+  {
+    "__docId__": 2,
+    "kind": "typedef",
+    "name": "TiltEffectInstance",
+    "memberof": "src/effect.js",
+    "static": true,
+    "longname": "src/effect.js~TiltEffectInstance",
+    "access": "public",
+    "description": "",
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "function()"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "destroy",
+        "description": "remove all event handlers created by this instance"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "HTMLElement"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tiltElement",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "HTMLElement"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "hitElement",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "draggable",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tiltAmount",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "sinkAmount",
+        "description": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "Object"
+      ],
+      "optional": false,
+      "name": "TiltEffectInstance"
+    }
+  },
+  {
+    "kind": "index",
+    "content": "# Tilt Effect\nWindows Phone/Windows 10 style tilt effect for DOM elements written in javascript [demo](https://thiskai.github.io/tilt-effect/demo/index.html)\n\n## Prerequisites\nThis library uses W3C Pointer Events, so you will need a polyfill &mdash;\n[JQuery PEP](https://github.com/jquery/PEP) works well.\n\n## Basic Usage\n\n### CommonJS\n```javascript\nvar TiltEffect = require('tilt-effect')\n\nTiltEffect({\n  tiltElement: document.getElementById('tilt-this')\n})\n```\n### ES2015\n```javascript\nimport TiltEffect from 'tilt-effect'\n\nTiltEffect({\n  tiltElement: document.getElementById('tilt-this')\n})\n```\n\n## Documentation\nhttps://thiskai.github.io/tilt-effect\n",
+    "longname": "/home/kai/dev/javascript/tilt-effect/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  }
+]

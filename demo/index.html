@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tilt effect example</title>
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+    <script src="/tilt-effect/script/tilt-effect.js"></script>
+    <style>
+      .button{
+        padding: 0.5em 1em;
+      }
+      .animate-tilt{
+        transition: transform 0.25s ease-out;
+      }
+      .tilted{
+        transition: none;
+        /*transition-duration: 0.03125s;*/
+      }
+      .large-button{
+        font-size: 36px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="tilt-outside" class="button large-button animate-tilt">Tilt</button>
+    <button id="tilt-inside" class="button large-button">
+      <div id="tilt-inside-contents" class="animate-tilt">Tilt</div>
+    </button>
+    <script>
+      TiltEffect({
+        tiltElement: document.getElementById('tilt-outside'),
+      })
+      TiltEffect({
+        tiltElement: document.getElementById('tilt-inside-contents'),
+        hitElement: document.getElementById('tilt-inside'),
+      })
+    </script>
+  </body>
+</html>
