@@ -8,7 +8,8 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
     "dev": "cross-env NODE_ENV=development rollup -c -w",
-    "docs": "esdoc -c esdoc.json",
+    "docs:build": "esdoc -c esdoc.json",
+    "docs:deploy": "push-dir --dir=docs --branch=gh-pages",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -31,6 +32,7 @@
     "esdoc-importpath-plugin": "^1.0.1",
     "esdoc-standard-plugin": "^1.0.0",
     "pepjs": "^0.4.3",
+    "push-dir": "^0.4.1",
     "rollup": "^0.52.0",
     "rollup-plugin-babel": "^3.0.2"
   }
