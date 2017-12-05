@@ -1,5 +1,5 @@
 # Tilt Effect
-Windows Phone/Windows 10 style tilt effect for DOM elements written in javascript
+Windows Phone/Windows 10 style tilt effect for DOM elements written in javascript [demo](https://thiskai.github.io/tilt-effect/demo/index.html)
 
 ## Prerequisites
 This library uses W3C Pointer Events &mdash;
