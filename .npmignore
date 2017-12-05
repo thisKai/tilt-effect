@@ -1,2 +1,5 @@
+.gitignore
+rollup*.config.js
+esdoc.json
 docs/
 example.html
