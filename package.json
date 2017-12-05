@@ -8,7 +8,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
     "dev": "cross-env NODE_ENV=development rollup -c -w",
-    "docs:build": "esdoc -c esdoc.json",
+    "docs:build": "cross-env NODE_ENV=production rollup -c rollup.demo.config.js && esdoc -c esdoc.json",
     "docs:deploy": "push-dir --dir=docs --branch=gh-pages",
     "prepublishOnly": "npm run build"
   },
