@@ -13,3 +13,6 @@ TiltEffect({
   tiltElement: document.getElementById('tilt-this')
 })
 ```
+
+## Documentation
+https://thiskai.github.io/tilt-effect
