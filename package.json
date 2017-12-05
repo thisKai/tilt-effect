@@ -1,6 +1,6 @@
 {
   "name": "tilt-effect",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "",
   "main": "./dist/tilt-effect-cjs.js",
   "module": "./dist/tilt-effect-es.js",
