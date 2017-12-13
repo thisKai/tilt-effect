@@ -92,7 +92,13 @@ export default function TiltEffect({
     set hitElement(value) { hitElement = value },
 
     get tiltedClass() { return tiltedClass },
-    set tiltedClass(value) { tiltedClass = value },
+    set tiltedClass(value) {
+      if(state.isTilting) {
+        tiltElement.classList.replace(tiltedClass, value)
+      }
+
+      tiltedClass = value
+    },
 
     get draggable() { return draggable },
     set draggable(value) { draggable = value },
