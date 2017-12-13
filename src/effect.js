@@ -7,6 +7,7 @@ import hitTest from './hit'
  * @param {Object} options
  * @param {HTMLElement} options.tiltElement - the element that will be transformed
  * @param {HTMLElement} options.hitElement - the element that listens to pointer events, by default it is the same as the tiltElement
+ * @param {string} options.tiltedClass - the CSS class added to the tlt element while it is tilted
  * @param {boolean} options.draggable - don't handle pointer move events, set to true if the tiltElement is draggable
  * @param {number} options.tiltAmount
  * @param {number} options.sinkAmount
@@ -16,6 +17,7 @@ import hitTest from './hit'
 export default function TiltEffect({
   tiltElement,
   hitElement = tiltElement,
+  tiltedClass = 'tilted',
   draggable = false,
   tiltAmount = 1,
   sinkAmount = 1,
@@ -26,7 +28,7 @@ export default function TiltEffect({
     get isTilting() { return _isTilting },
     set isTilting(val) {
       _isTilting = val
-      tiltElement.classList.toggle('tilted', val)
+      tiltElement.classList.toggle(tiltedClass, val)
       if (val) {
         hitElement.style.transform = 'none'
         state.bounds = hitElement.getBoundingClientRect()
@@ -89,6 +91,9 @@ export default function TiltEffect({
     get hitElement() { return hitElement },
     set hitElement(value) { hitElement = value },
 
+    get tiltedClass() { return tiltedClass },
+    set tiltedClass(value) { tiltedClass = value },
+
     get draggable() { return draggable },
     set draggable(value) { draggable = value },
 
@@ -105,6 +110,7 @@ export default function TiltEffect({
  * @property {function()} destroy remove all event handlers created by this instance
  * @property {HTMLElement} tiltElement
  * @property {HTMLElement} hitElement
+ * @property {string} tiltedClass
  * @property {boolean} draggable
  * @property {number} tiltAmount
  * @property {number} sinkAmount
