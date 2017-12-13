@@ -7,7 +7,7 @@ import hitTest from './hit'
  * @param {Object} options
  * @param {HTMLElement} options.tiltElement - the element that will be transformed
  * @param {HTMLElement} options.hitElement - the element that listens to pointer events, by default it is the same as the tiltElement
- * @param {boolean} options.draggable
+ * @param {boolean} options.draggable - don't handle pointer move events, set to true if the tiltElement is draggable
  * @param {number} options.tiltAmount
  * @param {number} options.sinkAmount
  *
@@ -66,7 +66,9 @@ export default function TiltEffect({
       tiltElement.style.transform = tiltTransform(state.bounds, clientX, clientY, tiltAmount, sinkAmount)
     }, 0)
 
-    window.addEventListener('pointermove', onPointerMove)
+    if(!draggable){
+      window.addEventListener('pointermove', onPointerMove)
+    }
     window.addEventListener('pointerup', onPointerUp)
     window.addEventListener('dragend', onPointerUp)
   }
@@ -88,7 +90,7 @@ export default function TiltEffect({
     set hitElement(value) { hitElement = value },
 
     get draggable() { return draggable },
-    set draggable(value) { drag = value },
+    set draggable(value) { draggable = value },
 
     get tiltAmount() { return tiltAmount },
     set tiltAmount(value) { tiltAmount = value },
