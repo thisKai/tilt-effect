@@ -1,6 +1,8 @@
 # Tilt Effect
 Windows Phone/Windows 10 style tilt effect for DOM elements written in javascript [demo](https://thiskai.github.io/tilt-effect/demo/index.html)
 
+[![npm version](https://badge.fury.io/js/tilt-effect.svg)](https://www.npmjs.com/package/tilt-effect)
+
 ## Prerequisites
 This library uses W3C Pointer Events, so you will need a polyfill &mdash;
 [JQuery PEP](https://github.com/jquery/PEP) works well.
