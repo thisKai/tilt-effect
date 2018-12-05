@@ -13,7 +13,6 @@ export default function tiltTransform(
     mouseY,
     tiltAmount,
   )
-  const { width, height } = bounds
 
   const perspective = 400
   const translateZ = -10 * sinkAmount
