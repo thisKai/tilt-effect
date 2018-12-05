@@ -17,5 +17,5 @@ export default function tiltTransform(
   const perspective = 400
   const translateZ = -10 * sinkAmount
 
-  return `perspective(${perspective}px) translateZ(${translateZ}px) rotateY(${x}turn) rotateX(${y}turn)`
+  return `perspective(${perspective}px) translateZ(${translateZ}px) rotateX(${x}turn) rotateY(${y}turn)`
 }

@@ -18,8 +18,8 @@ export default function tiltRotation(
 
 
   // distance from pointer to center of element
-  const x = (centerX - mouseX) / -width / (16 / tiltAmount)
-  const y = (centerY - mouseY) / height / (16 / tiltAmount)
+  const x = (centerY - mouseY) / height / (16 / tiltAmount)
+  const y = (centerX - mouseX) / -width / (16 / tiltAmount)
 
   return { x, y }
 }
